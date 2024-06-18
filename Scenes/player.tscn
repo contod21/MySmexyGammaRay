@@ -1,0 +1,126 @@
+[gd_scene load_steps=10 format=3 uid="uid://cw7bk6aehofv8"]
+
+[ext_resource type="Texture2D" uid="uid://biwty7xcu0t0k" path="res://Sprites/Heroes/oryx_16bit_fantasy_creatures_01.png" id="1_8nmf8"]
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_8yoph"]
+[ext_resource type="Texture2D" uid="uid://dhi7s1r40vypn" path="res://Sprites/Heroes/oryx_16bit_fantasy_creatures_19.png" id="2_itysm"]
+[ext_resource type="Script" path="res://Scenes/UI.gd" id="4_vf4p3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7sjtw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8nmf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_itysm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eevq1"]
+radius = 7.07107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hukqx"]
+radius = 31.0161
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5pbg"]
+bg_color = Color(0.725435, 0, 0.186355, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3bqi"]
+bg_color = Color(1.44392e-07, 0.615212, 0.226168, 1)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_8yoph")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_7sjtw")
+autoplay = "default"
+frame_progress = 0.904937
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eevq1")
+
+[node name="KnifeTimer" type="Timer" parent="." groups=["Player"]]
+autostart = true
+
+[node name="PickupZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupZone"]
+shape = SubResource("CircleShape2D_hukqx")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_vf4p3")
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Experience" type="ProgressBar" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+
+[node name="Health" type="ProgressBar" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_y5pbg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_m3bqi")
+value = 100.0
+
+[node name="LevelUpNotice" type="PanelContainer" parent="UI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/LevelUpNotice"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/LevelUpNotice/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="btn_health_level" type="Button" parent="UI/Control/LevelUpNotice/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level Up Health"
+
+[node name="btn_speed_level" type="Button" parent="UI/Control/LevelUpNotice/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level Up Speed"
+
+[node name="btn_kife_level" type="Button" parent="UI/Control/LevelUpNotice/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level Up Knife"
+
+[connection signal="timeout" from="KnifeTimer" to="." method="_on_knife_timer_timeout"]
+[connection signal="area_entered" from="PickupZone" to="." method="_on_pickup_zone_area_entered"]

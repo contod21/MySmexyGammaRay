@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cli8jqtstr4qn"]
+
+[ext_resource type="Texture2D" uid="uid://bcg6irt1kn763" path="res://Sprites/Enemies/oryx_16bit_fantasy_creatures_192.png" id="1_2neq2"]
+[ext_resource type="Script" path="res://Scenes/enemy_golem.gd" id="1_st3vj"]
+[ext_resource type="Texture2D" uid="uid://18aolthvscrq" path="res://Sprites/Enemies/oryx_16bit_fantasy_creatures_210.png" id="2_xwktm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhjlt"]
+radius = 8.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_433vy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2neq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xwktm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t00kf"]
+radius = 8.0
+
+[node name="EnemyGolem" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_st3vj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nhjlt")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_433vy")
+autoplay = "default"
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_t00kf")
+
+[node name="DamageTimer" type="Timer" parent="HurtBox"]
+wait_time = 0.4
+one_shot = true
