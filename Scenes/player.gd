@@ -8,8 +8,17 @@ extends CharacterBody2D
 const KNIFE = preload("res://Scenes/knife.tscn")
 @onready var world = get_node("/root/World")
 var direction = Vector2.ZERO
+var is_ready: bool = true
+@onready var knife_timer = $KnifeTimer
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("action primary") and is_ready:
+		var knife = KNIFE.instantiate()
+		knife.global_position = global_position
+		knife.rotate(global_position.direction_to(get_global_mouse_position()).angle())
+		world.add_child(knife)
+		knife_timer.start()
+		is_ready = false
 
 	direction = Input.get_vector("left", "right", "up",  "down").normalized()
 	if direction:
@@ -26,10 +35,8 @@ func _physics_process(delta):
 
 
 func _on_knife_timer_timeout():
-	var knife = KNIFE.instantiate()
-	knife.global_position = global_position
-	knife.rotate(global_position.direction_to(get_global_mouse_position()).angle())
-	world.add_child(knife)
+	is_ready = true
+
 
 
 func _on_pickup_zone_area_entered(area):
