@@ -25,3 +25,10 @@ func add_experience(val):
 func damage_player(amount):
 	player_health -= amount
 	emit_signal("take_damage")
+	
+func add_max_health():
+	player_max_health =+ 20
+	player_health = player_max_health
+	emit_signal("take_damage")
+	
+

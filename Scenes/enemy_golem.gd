@@ -14,6 +14,8 @@ const EXPERIENCE_GEM = preload("res://Scenes/experience_gem.tscn")
 
 
 func check_collisions():
+	if not damage_timer.is_stopped():
+		return
 	var collisions = $HurtBox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
