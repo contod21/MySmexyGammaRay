@@ -294,7 +294,6 @@ position = Vector2(718.652, -271.348)
 rotation = 2.81944
 
 [node name="SpawnTimer" type="Timer" parent="Camera/EnemySpawner"]
-wait_time = 0.006
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="."]

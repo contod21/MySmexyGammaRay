@@ -1,6 +1,6 @@
 extends Node
 
-var knife_level = 1
+var knife_level = 0
 var knife_damage = 5
 var knife_speed = 350
 var knife_projectiles = 1 
@@ -8,7 +8,7 @@ var knife_time = 0.8
 var knife_knockback = 10
 
 func level_up_knife():
-	knife_level =+ 1
+	knife_level += 1
 	match knife_level:
 		1:
 			pass

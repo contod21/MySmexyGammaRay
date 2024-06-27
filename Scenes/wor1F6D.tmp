@@ -87,6 +87,9 @@ sources/0 = SubResource("TileSetAtlasSource_oorc3")
 
 [node name="Player" parent="." instance=ExtResource("1_rqn8p")]
 position = Vector2(642, 321)
+SPEED = null
+ACCELLERATION = null
+FRICTION = null
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera")
@@ -294,7 +297,6 @@ position = Vector2(718.652, -271.348)
 rotation = 2.81944
 
 [node name="SpawnTimer" type="Timer" parent="Camera/EnemySpawner"]
-wait_time = 0.006
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="."]

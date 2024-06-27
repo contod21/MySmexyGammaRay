@@ -11,6 +11,7 @@ func _ready():
 	WeaponKnife.level_up_knife()
 	
 
+
 func level_up():
 	update_xp()
 	level_up_notice.visible = true
@@ -42,4 +43,5 @@ func _on_btn_speed_level_pressed():
 
 func _on_btn_kife_level_pressed():
 	WeaponKnife.level_up_knife()
+	print("The knife damage is now", WeaponKnife.knife_damage)
 	level_up_notice.visible = false
