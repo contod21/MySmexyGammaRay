@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var experience = $Control/Experience
 @onready var health = $Control/Health
 @onready var level_up_notice = $Control/LevelUpNotice
+@onready var HealthText = $Control/Label
 
 func _ready():
 	PlayerStats.level_up.connect(level_up)
@@ -23,6 +24,7 @@ func update_xp():
 func update_health():
 	health.max_value = PlayerStats.player_max_health
 	health.value = PlayerStats.player_health
+	HealthText.text = str(PlayerStats.player_health) + "/" + str(PlayerStats.player_max_health)
 
 
 func _on_level_up_notice_visibility_changed():
