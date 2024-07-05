@@ -26,6 +26,8 @@ func add_experience(val):
 func damage_player(amount):
 	player_health -= amount
 	emit_signal("take_damage")
+	if player_health <= 0:
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 	
 func add_max_health():
 	player_max_health += 20
