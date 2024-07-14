@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PlayerStats="*res://Singletons/player_stats.gd"
 WeaponKnife="*res://Singletons/weapon_knife.gd"
+EnemyStats="*res://Singletons/enemy_stats.gd"
 
 [input]
 

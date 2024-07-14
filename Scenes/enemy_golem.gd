@@ -8,10 +8,14 @@ const JUMP_VELOCITY = -400.0
 @onready var pep = get_tree()
 const EXPLOSION = preload("res://Scenes/explosion.tscn")	
 const EXPERIENCE_GEM = preload("res://Scenes/experience_gem.tscn")
-@export var health = 10
 @onready var damage_timer = $HurtBox/DamageTimer
-@export var damage = 5
+@onready var health_bar = $Control/Health
+@export var health = 10
+@export var max_health = 10
 
+func _ready():
+	health = EnemyStats.golem_max_health
+	max_health = EnemyStats.golem_max_health
 
 func check_collisions():
 	if not damage_timer.is_stopped():
@@ -20,7 +24,7 @@ func check_collisions():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and damage_timer.is_stopped():
-				PlayerStats.damage_player(damage)
+				PlayerStats.damage_player(EnemyStats.golem_damage)
 				damage_timer.start()
 
 func _physics_process(delta):
@@ -37,6 +41,7 @@ func _physics_process(delta):
 
 func take_damage(dmg):
 	health -= dmg
+	update_enemy_health()
 	if (health <= 0):
 		
 		queue_free()
@@ -46,5 +51,15 @@ func take_damage(dmg):
 		var new_gem = EXPERIENCE_GEM.instantiate()
 		new_gem.global_position = global_position
 		add_sibling(new_gem)
-		
 
+
+func update_enemy_health():
+	health_bar.visible = true
+	health_bar.max_value = max_health
+	health_bar.value = health
+
+
+func _on_strength_timer_timeout():
+	EnemyStats.golem_max_health += 5
+	EnemyStats.golem_damage += 5
+	
