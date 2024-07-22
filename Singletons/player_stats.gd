@@ -5,6 +5,7 @@ var player_experience = 0
 var player_health = 100
 var player_max_health = 100
 var next_level = 15
+var knife_timer = 1
 
 signal level_up
 signal add_xp
@@ -37,4 +38,6 @@ func add_max_health():
 	player_health += 20
 	emit_signal("take_damage")
 	
+func reduce_knife_timer():
+	knife_timer -= 0.2
 
