@@ -17,7 +17,10 @@ func level_up_player():
 	emit_signal("level_up")
 	
 func add_experience(val):
-	print(val)
+	player_health += 5
+	if player_health > player_max_health:
+		player_health = player_max_health
+	emit_signal("take_damage")
 	player_experience += val
 	emit_signal("add_xp")
 	if player_experience >= next_level:
@@ -31,7 +34,7 @@ func damage_player(amount):
 	
 func add_max_health():
 	player_max_health += 20
-	player_health = player_max_health
+	player_health += 20
 	emit_signal("take_damage")
 	
 
