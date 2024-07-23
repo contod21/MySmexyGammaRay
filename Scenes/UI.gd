@@ -4,17 +4,21 @@ extends CanvasLayer
 @onready var health = $Control/Health
 @onready var level_up_notice = $Control/LevelUpNotice
 @onready var HealthText = $Control/Label
+@onready var knife_timer = $"../KnifeTimer"
 
 func _ready():
 	PlayerStats.level_up.connect(level_up)
 	PlayerStats.take_damage.connect(update_health)
 	PlayerStats.add_xp.connect(update_xp)
+	PlayerStats.update_speed.connect(update_speed)
 	WeaponKnife.level_up_knife()
 	
 
 
 func level_up():
 	update_xp()
+	if PlayerStats.knife_timer <= 0.1:
+		$Control/LevelUpNotice/MarginContainer/VBoxContainer/btn_speed_level.disabled = true
 	level_up_notice.visible = true
 
 func update_xp():
@@ -40,9 +44,16 @@ func _on_btn_health_level_pressed():
 
 
 func _on_btn_speed_level_pressed():
-	pass # Replace with function body.
+	PlayerStats.reduce_knife_timer()
+	level_up_notice.visible = false
+
 
 
 func _on_btn_kife_level_pressed():
 	WeaponKnife.level_up_knife()
 	level_up_notice.visible = false
+	
+func update_speed():
+	knife_timer.set_wait_time(PlayerStats.knife_timer)
+	print(PlayerStats.knife_timer)
+
