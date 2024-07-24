@@ -43,6 +43,3 @@ func _on_pickup_zone_area_entered(area):
 	if area.is_in_group("Pickup"):
 		if area.has_method("collect"):
 			area.collect()
-
-func just_die_already():
-	pass

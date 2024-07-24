@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw7bk6aehofv8"]
+[gd_scene load_steps=12 format=3 uid="uid://cw7bk6aehofv8"]
 
 [ext_resource type="Texture2D" uid="uid://biwty7xcu0t0k" path="res://Sprites/Heroes/oryx_16bit_fantasy_creatures_01.png" id="1_8nmf8"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_8yoph"]
 [ext_resource type="Texture2D" uid="uid://dhi7s1r40vypn" path="res://Sprites/Heroes/oryx_16bit_fantasy_creatures_19.png" id="2_itysm"]
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="4_vf4p3"]
+[ext_resource type="Texture2D" uid="uid://bfc6nbs4d81t6" path="res://image-1.png.png" id="5_m0bwk"]
+[ext_resource type="Texture2D" uid="uid://b8k521sy7j42y" path="res://image-1.png (1).png" id="6_gmve4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7sjtw"]
 animations = [{
@@ -135,11 +137,20 @@ text = "Level Up Health"
 
 [node name="btn_speed_level" type="Button" parent="UI/Control/LevelUpNotice/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Level Up Speed"
+text = "Level Up Knife Speed"
 
 [node name="btn_kife_level" type="Button" parent="UI/Control/LevelUpNotice/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Level Up Knife"
+
+[node name="TextureButton" type="TextureButton" parent="UI/Control"]
+offset_left = 1105.0
+offset_top = 28.0
+offset_right = 2385.0
+offset_bottom = 1308.0
+scale = Vector2(0.0361473, 0.0355552)
+texture_normal = ExtResource("5_m0bwk")
+texture_hover = ExtResource("6_gmve4")
 
 [connection signal="timeout" from="KnifeTimer" to="." method="_on_knife_timer_timeout"]
 [connection signal="area_entered" from="PickupZone" to="." method="_on_pickup_zone_area_entered"]
@@ -147,3 +158,4 @@ text = "Level Up Knife"
 [connection signal="pressed" from="UI/Control/LevelUpNotice/MarginContainer/VBoxContainer/btn_health_level" to="UI" method="_on_btn_health_level_pressed"]
 [connection signal="pressed" from="UI/Control/LevelUpNotice/MarginContainer/VBoxContainer/btn_speed_level" to="UI" method="_on_btn_speed_level_pressed"]
 [connection signal="pressed" from="UI/Control/LevelUpNotice/MarginContainer/VBoxContainer/btn_kife_level" to="UI" method="_on_btn_kife_level_pressed"]
+[connection signal="toggled" from="UI/Control/TextureButton" to="UI" method="_on_texture_button_toggled"]

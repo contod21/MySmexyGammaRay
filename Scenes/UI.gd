@@ -55,5 +55,9 @@ func _on_btn_kife_level_pressed():
 	
 func update_speed():
 	knife_timer.set_wait_time(PlayerStats.knife_timer)
-	print(PlayerStats.knife_timer)
 
+
+
+func _on_texture_button_toggled(toggled_on):
+	pass
+	
