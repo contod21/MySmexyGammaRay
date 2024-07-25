@@ -16,7 +16,6 @@ const EXPERIENCE_GEM = preload("res://Scenes/experience_gem.tscn")
 func _ready():
 	health = EnemyStats.golem_max_health
 	max_health = EnemyStats.golem_max_health
-	$StrengthTimer.start()
 
 func check_collisions():
 	if not damage_timer.is_stopped():
@@ -58,10 +57,3 @@ func update_enemy_health():
 	health_bar.visible = true
 	health_bar.max_value = max_health
 	health_bar.value = health
-
-
-func _on_strength_timer_timeout():
-	EnemyStats.golem_max_health += 5
-	EnemyStats.golem_damage += 5
-	$StrengthTimer.start()
-	

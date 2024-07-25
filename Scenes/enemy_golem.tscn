@@ -79,9 +79,3 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_e1ft7")
 max_value = 10.0
 value = 10.0
 show_percentage = false
-
-[node name="StrengthTimer" type="Timer" parent="."]
-wait_time = 30.0
-one_shot = true
-
-[connection signal="timeout" from="StrengthTimer" to="." method="_on_strength_timer_timeout"]

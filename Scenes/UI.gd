@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var level_up_notice = $Control/LevelUpNotice
 @onready var HealthText = $Control/Label
 @onready var knife_timer = $"../KnifeTimer"
+@onready var shop = false
 
 func _ready():
 	PlayerStats.level_up.connect(level_up)
@@ -57,7 +58,11 @@ func update_speed():
 	knife_timer.set_wait_time(PlayerStats.knife_timer)
 
 
-
-func _on_texture_button_toggled(toggled_on):
-	pass
-	
+func _on_texture_button_pressed():
+	print(shop)
+	if shop == false:
+		get_tree().paused = true
+		shop = true
+	else:
+		get_tree().paused = false
+		shop = false
