@@ -82,6 +82,6 @@ show_percentage = false
 
 [node name="StrengthTimer" type="Timer" parent="."]
 wait_time = 30.0
-autostart = true
+one_shot = true
 
 [connection signal="timeout" from="StrengthTimer" to="." method="_on_strength_timer_timeout"]
