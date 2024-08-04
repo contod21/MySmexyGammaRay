@@ -29,7 +29,7 @@ func update_xp():
 func update_health():
 	health.max_value = PlayerStats.player_max_health
 	health.value = PlayerStats.player_health
-	HealthText.text = str(PlayerStats.player_health) + "/" + str(PlayerStats.player_max_health)
+	HealthText.text = str(PlayerStats.player_health)
 
 
 func _on_level_up_notice_visibility_changed():
