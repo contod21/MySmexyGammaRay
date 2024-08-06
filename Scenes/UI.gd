@@ -31,7 +31,6 @@ func update_health():
 	health.value = PlayerStats.player_health
 	HealthText.text = str(PlayerStats.player_health)
 
-
 func _on_level_up_notice_visibility_changed():
 	if level_up_notice.visible == true:
 		get_tree().paused = true

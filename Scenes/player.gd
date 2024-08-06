@@ -4,14 +4,20 @@ extends CharacterBody2D
 @export var SPEED = 100.0
 @export var ACCELLERATION = 20
 @export var FRICTION = 10
+@export var SPEED_BONUS := 1.0
 @onready var sprite = $Sprite
 const KNIFE = preload("res://Scenes/knife.tscn")
 @onready var world = get_node("/root/World")
 var direction = Vector2.ZERO
 var is_ready: bool = true
 @onready var knife_timer = $KnifeTimer
+var sprint = 100 
+var sprint_stamina_depletor := 0.9
+var sprint_stamina_increase := 0.4
+@onready var stamina = $UI/Control/Stamina
 
 func _physics_process(delta):
+	
 	if Input.is_action_pressed("action primary") and is_ready:	
 		var knife = KNIFE.instantiate()
 		knife.global_position = global_position
@@ -19,10 +25,23 @@ func _physics_process(delta):
 		world.add_child(knife)
 		knife_timer.start()
 		is_ready = false
+	if Input.is_action_pressed("Sprint") and sprint > 0:
+		SPEED_BONUS = 1.5
+		sprint = clamp(sprint - sprint_stamina_depletor, 1, 100)
+	else:
+		SPEED_BONUS = 1.0
+		sprint = clamp(sprint + (sprint_stamina_increase * (sprint/100)), 1, 100)
+	
+	if sprint > 99:
+		stamina.visible = false
+	else:
+		stamina.visible = true
+	stamina.value = sprint
 
 	direction = Input.get_vector("left", "right", "up",  "down").normalized()
+	var adjusted_direction = direction * SPEED * SPEED_BONUS
 	if direction:
-		velocity = velocity.move_toward(direction * SPEED, ACCELLERATION)
+		velocity = velocity.move_toward(adjusted_direction, ACCELLERATION)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		
@@ -30,6 +49,7 @@ func _physics_process(delta):
 		sprite.flip_h = true
 	elif velocity.x < 0:
 		sprite.flip_h = false
+		
 
 	move_and_slide()
 
