@@ -11,9 +11,10 @@ const KNIFE = preload("res://Scenes/knife.tscn")
 var direction = Vector2.ZERO
 var is_ready: bool = true
 @onready var knife_timer = $KnifeTimer
-var sprint = 100 
+var sprint = 20 
 var sprint_stamina_depletor := 0.9
 var sprint_stamina_increase := 0.4
+var depleted = true
 @onready var stamina = $UI/Control/Stamina
 
 func _physics_process(delta):
@@ -25,15 +26,25 @@ func _physics_process(delta):
 		world.add_child(knife)
 		knife_timer.start()
 		is_ready = false
-	if Input.is_action_pressed("Sprint") and sprint > 0:
-		SPEED_BONUS = 1.5
-		sprint = clamp(sprint - sprint_stamina_depletor, 1, 100)
+	if Input.is_action_pressed("Sprint") and sprint > 1:
+		if depleted == true:
+			pass
+		else:
+			SPEED_BONUS = 1.5
+			sprint = clamp(sprint - sprint_stamina_depletor, 1, 100)
 	else:
-		SPEED_BONUS = 1.0
-		sprint = clamp(sprint + (sprint_stamina_increase * (sprint/100)), 1, 100)
+		pass
+		
 	
 	if sprint > 99:
 		stamina.visible = false
+		depleted = false
+	elif sprint <= 1:
+		depleted = true
+		stamina.visible = true
+	elif sprint >= 20:
+		depleted = false
+		stamina.visible = true
 	else:
 		stamina.visible = true
 	stamina.value = sprint
