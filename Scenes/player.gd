@@ -16,6 +16,7 @@ var sprint_stamina_depletor := 0.9
 var sprint_stamina_increase := 0.4
 var depleted = true
 @onready var stamina = $UI/Control/Stamina
+@onready var stamOver = $UI/Control/StaminaOverlay
 
 func _physics_process(delta):
 	
@@ -39,13 +40,16 @@ func _physics_process(delta):
 	
 	if sprint > 99:
 		stamina.visible = false
+		stamOver.visible = false
 		depleted = false
 	elif sprint <= 1:
 		depleted = true
 		stamina.visible = true
+		stamOver.visible = true
 	elif sprint >= 20:
 		depleted = false
 		stamina.visible = true
+		stamOver.visible = true
 	else:
 		stamina.visible = true
 	stamina.value = sprint

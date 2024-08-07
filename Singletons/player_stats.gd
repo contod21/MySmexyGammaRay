@@ -40,6 +40,6 @@ func add_max_health():
 	emit_signal("take_damage")
 	
 func reduce_knife_timer():
-	knife_timer -= 0.02
+	knife_timer -= 0.05
 	emit_signal("update_speed")
 

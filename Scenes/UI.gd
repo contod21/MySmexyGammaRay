@@ -2,9 +2,7 @@ extends CanvasLayer
 
 @onready var experience = $Control/Experience
 @onready var health = $Control/Health
-@onready var health2 = $Control/TextureProgressBar
 @onready var level_up_notice = $Control/LevelUpNotice
-@onready var HealthText = $Control/Label
 @onready var knife_timer = $"../KnifeTimer"
 @onready var shop = false
 
@@ -29,10 +27,7 @@ func update_xp():
 	
 func update_health():
 	health.max_value = PlayerStats.player_max_health
-	health2.max_value = PlayerStats.player_max_health
-	health2.value = PlayerStats.player_health
 	health.value = PlayerStats.player_health
-	HealthText.text = str(PlayerStats.player_health)
 
 func _on_level_up_notice_visibility_changed():
 	if level_up_notice.visible == true:

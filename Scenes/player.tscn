@@ -1,13 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://cw7bk6aehofv8"]
+[gd_scene load_steps=20 format=3 uid="uid://cw7bk6aehofv8"]
 
 [ext_resource type="Texture2D" uid="uid://biwty7xcu0t0k" path="res://Sprites/Heroes/oryx_16bit_fantasy_creatures_01.png" id="1_8nmf8"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_8yoph"]
 [ext_resource type="Texture2D" uid="uid://dhi7s1r40vypn" path="res://Sprites/Heroes/oryx_16bit_fantasy_creatures_19.png" id="2_itysm"]
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="4_vf4p3"]
-[ext_resource type="Texture2D" uid="uid://bm0sxhs3asew4" path="res://Test2.png" id="5_18qjh"]
+[ext_resource type="Texture2D" uid="uid://cpr5m2ihrm5ax" path="res://Game UI/TopHealth.png" id="5_0asee"]
+[ext_resource type="Texture2D" uid="uid://dwvfxjym45g82" path="res://Game UI/HealthBack.png" id="5_hybbc"]
 [ext_resource type="Texture2D" uid="uid://bfc6nbs4d81t6" path="res://image-1.png.png" id="5_m0bwk"]
 [ext_resource type="Texture2D" uid="uid://b8k521sy7j42y" path="res://image-1.png (1).png" id="6_gmve4"]
-[ext_resource type="Texture2D" uid="uid://cj6aulcfdumag" path="res://Test.png" id="6_ny12j"]
+[ext_resource type="Texture2D" uid="uid://bfh87tdrikhll" path="res://Game UI/HealthStatus.png" id="6_sdmns"]
+[ext_resource type="Texture2D" uid="uid://b82fa3yw3v47d" path="res://Game UI/XpBottom.png" id="7_nhwxr"]
+[ext_resource type="Texture2D" uid="uid://8dp53n5sijjk" path="res://Game UI/XpTop.png" id="8_aone3"]
+[ext_resource type="Texture2D" uid="uid://cjs76t20m87by" path="res://Game UI/StamBottom.png" id="9_2gqcj"]
+[ext_resource type="Texture2D" uid="uid://cv4i6koeqoiki" path="res://Game UI/StamTop.png" id="10_4kj8q"]
+[ext_resource type="Texture2D" uid="uid://dlf7o7l1paukl" path="res://Game UI/XpBar.png" id="12_ifh5p"]
+[ext_resource type="Texture2D" uid="uid://5y37b5sjvsj" path="res://Game UI/StamOver.png" id="13_jg0ui"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7sjtw"]
 animations = [{
@@ -24,25 +31,18 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eevq1"]
-radius = 7.07107
+radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hukqx"]
-radius = 31.0161
+radius = 46.0435
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5pbg"]
-bg_color = Color(0.725435, 0, 0.186355, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3bqi"]
-bg_color = Color(1.44392e-07, 0.615212, 0.226168, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_natg6"]
-bg_color = Color(0.756645, 0.759194, 0.755397, 1)
+[sub_resource type="ImageTexture" id="ImageTexture_1765h"]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_8yoph")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -3)
+scale = Vector2(1.625, 1.625)
 sprite_frames = SubResource("SpriteFrames_7sjtw")
 autoplay = "default"
 frame_progress = 0.904937
@@ -59,6 +59,7 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupZone"]
 shape = SubResource("CircleShape2D_hukqx")
+metadata/_edit_lock_ = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -69,81 +70,72 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 1.0
+offset_right = 9.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="UI/Control"]
-
-[node name="Experience" type="ProgressBar" parent="UI/Control"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 12.0
-offset_top = 44.0
-offset_right = -652.0
-offset_bottom = 54.0
-grow_horizontal = 2
-show_percentage = false
-
-[node name="Health" type="ProgressBar" parent="UI/Control"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -638.0
-offset_right = -652.0
-offset_bottom = -606.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_y5pbg")
-theme_override_styles/fill = SubResource("StyleBoxFlat_m3bqi")
+[node name="Health" type="TextureProgressBar" parent="UI/Control"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 52.0
+offset_right = 125.0
+offset_bottom = 56.0
+scale = Vector2(4.50253, 4.50253)
 value = 100.0
-show_percentage = false
+texture_under = ExtResource("6_sdmns")
+texture_over = SubResource("ImageTexture_1765h")
+texture_progress = ExtResource("5_hybbc")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/Control"]
-offset_left = 79.0
-offset_top = 170.0
-offset_right = 486.0
-offset_bottom = 197.0
-value = 50.0
-texture_under = ExtResource("5_18qjh")
-texture_progress = ExtResource("6_ny12j")
+[node name="Experience" type="TextureProgressBar" parent="UI/Control"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 106.0
+offset_right = 127.0
+offset_bottom = 112.0
+scale = Vector2(4.36281, 4.36281)
+texture_under = ExtResource("7_nhwxr")
+texture_progress = ExtResource("8_aone3")
 
-[node name="Stamina" type="ProgressBar" parent="UI/Control"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -288.0
-offset_top = -59.0
-offset_right = 289.0
-offset_bottom = -45.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_natg6")
-value = 100.0
-rounded = true
-show_percentage = false
+[node name="Stamina" type="TextureProgressBar" parent="UI/Control"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 155.0
+offset_right = 116.0
+offset_bottom = 157.0
+scale = Vector2(3.35786, 4.531)
+texture_under = ExtResource("9_2gqcj")
+texture_progress = ExtResource("10_4kj8q")
 
-[node name="Label" type="Label" parent="UI/Control"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -606.0
-offset_top = -633.0
-offset_right = -451.0
-offset_bottom = -610.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "100"
-horizontal_alignment = 1
+[node name="HealthOverlay" type="TextureRect" parent="UI/Control"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 271.0
+offset_bottom = 95.0
+texture = ExtResource("5_0asee")
+expand_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="ExpOverlay" type="TextureRect" parent="UI/Control"]
+offset_left = 63.0
+offset_top = 94.0
+offset_right = 298.0
+offset_bottom = 127.0
+texture = ExtResource("12_ifh5p")
+metadata/_edit_lock_ = true
+
+[node name="StaminaOverlay" type="TextureRect" parent="UI/Control"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 142.0
+offset_right = 215.0
+offset_bottom = 177.0
+texture = ExtResource("13_jg0ui")
+metadata/_edit_lock_ = true
 
 [node name="LevelUpNotice" type="PanelContainer" parent="UI/Control"]
 visible = false

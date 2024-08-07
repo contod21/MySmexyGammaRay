@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://18aolthvscrq" path="res://Sprites/Enemies/oryx_16bit_fantasy_creatures_210.png" id="2_xwktm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhjlt"]
-radius = 8.0
+radius = 17.1172
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_433vy"]
 animations = [{
@@ -22,7 +22,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t00kf"]
-radius = 8.0
+radius = 9.18736
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs2pr"]
 bg_color = Color(0.725435, 0, 0.186355, 1)
@@ -36,9 +36,12 @@ collision_mask = 2
 script = ExtResource("1_st3vj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.565414, 0.434586)
 shape = SubResource("CircleShape2D_nhjlt")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.56541, 0.434586)
+scale = Vector2(2.36955, 2.36955)
 sprite_frames = SubResource("SpriteFrames_433vy")
 autoplay = "default"
 
@@ -46,6 +49,7 @@ autoplay = "default"
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+scale = Vector2(2.61229, 2.61229)
 shape = SubResource("CircleShape2D_t00kf")
 
 [node name="DamageTimer" type="Timer" parent="HurtBox"]
@@ -68,12 +72,13 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -9.0
-offset_top = -15.0
-offset_right = 9.0
-offset_bottom = -13.0
+offset_left = -17.0
+offset_top = -33.0
+offset_right = 8.0
+offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.17362, 1.17362)
 theme_override_styles/background = SubResource("StyleBoxFlat_cs2pr")
 theme_override_styles/fill = SubResource("StyleBoxFlat_e1ft7")
 max_value = 10.0

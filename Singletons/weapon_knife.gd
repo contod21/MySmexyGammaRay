@@ -14,13 +14,28 @@ func level_up_knife():
 			pass
 		2:
 			knife_damage = 10
-			knife_speed = 400
 			knife_projectiles = 2 
-			knife_time = 0.8
-			knife_knockback = 15
 		3:
 			knife_damage = 15
-			knife_speed = 500
 			knife_projectiles = 2 
-			knife_time = 0.5
-			knife_knockback = 20
+		4: 
+			knife_damage = 20
+			knife_projectiles = 2 
+		5:
+			knife_damage = 25
+			knife_projectiles = 4
+		6:
+			knife_damage = 30
+			knife_projectiles = 4
+		7:
+			knife_damage = 35
+			knife_projectiles = 4
+		8:
+			knife_damage = 40
+			knife_projectiles = 4
+		9:
+			knife_damage = 45
+			knife_projectiles = 6
+		10:
+			knife_damage = 50
+			knife_projectiles = 10

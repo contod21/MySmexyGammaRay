@@ -41,6 +41,7 @@ func _physics_process(delta):
 
 func take_damage(dmg):
 	health -= dmg
+	DamageNumbers.display_number(dmg, global_position)
 	update_enemy_health()
 	if (health <= 0):
 		
