@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cw7bk6aehofv8"]
+[gd_scene load_steps=15 format=3 uid="uid://cw7bk6aehofv8"]
 
 [ext_resource type="Texture2D" uid="uid://biwty7xcu0t0k" path="res://Sprites/Heroes/oryx_16bit_fantasy_creatures_01.png" id="1_8nmf8"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_8yoph"]
 [ext_resource type="Texture2D" uid="uid://dhi7s1r40vypn" path="res://Sprites/Heroes/oryx_16bit_fantasy_creatures_19.png" id="2_itysm"]
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="4_vf4p3"]
+[ext_resource type="Texture2D" uid="uid://bm0sxhs3asew4" path="res://Test2.png" id="5_18qjh"]
 [ext_resource type="Texture2D" uid="uid://bfc6nbs4d81t6" path="res://image-1.png.png" id="5_m0bwk"]
 [ext_resource type="Texture2D" uid="uid://b8k521sy7j42y" path="res://image-1.png (1).png" id="6_gmve4"]
+[ext_resource type="Texture2D" uid="uid://cj6aulcfdumag" path="res://Test.png" id="6_ny12j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7sjtw"]
 animations = [{
@@ -99,6 +101,15 @@ theme_override_styles/background = SubResource("StyleBoxFlat_y5pbg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_m3bqi")
 value = 100.0
 show_percentage = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/Control"]
+offset_left = 79.0
+offset_top = 170.0
+offset_right = 486.0
+offset_bottom = 197.0
+value = 50.0
+texture_under = ExtResource("5_18qjh")
+texture_progress = ExtResource("6_ny12j")
 
 [node name="Stamina" type="ProgressBar" parent="UI/Control"]
 layout_mode = 1

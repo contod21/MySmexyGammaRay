@@ -33,7 +33,8 @@ func _physics_process(delta):
 			SPEED_BONUS = 1.5
 			sprint = clamp(sprint - sprint_stamina_depletor, 1, 100)
 	else:
-		pass
+		SPEED_BONUS = 1.0
+		sprint = clamp(sprint + (sprint_stamina_increase * sprint/50), 1, 100)
 		
 	
 	if sprint > 99:
