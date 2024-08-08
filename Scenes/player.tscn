@@ -121,6 +121,7 @@ expand_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="ExpOverlay" type="TextureRect" parent="UI/Control"]
+layout_mode = 0
 offset_left = 63.0
 offset_top = 94.0
 offset_right = 298.0
