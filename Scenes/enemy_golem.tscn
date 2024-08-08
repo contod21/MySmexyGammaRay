@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://18aolthvscrq" path="res://Sprites/Enemies/oryx_16bit_fantasy_creatures_210.png" id="2_xwktm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhjlt"]
-radius = 17.1172
+radius = 23.6173
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_433vy"]
 animations = [{

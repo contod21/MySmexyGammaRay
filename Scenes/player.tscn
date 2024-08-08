@@ -102,10 +102,10 @@ texture_progress = ExtResource("8_aone3")
 
 [node name="Stamina" type="TextureProgressBar" parent="UI/Control"]
 layout_mode = 0
-offset_left = 78.0
-offset_top = 155.0
-offset_right = 116.0
-offset_bottom = 157.0
+offset_left = 71.0
+offset_top = 154.0
+offset_right = 109.0
+offset_bottom = 156.0
 scale = Vector2(3.35786, 4.531)
 texture_under = ExtResource("9_2gqcj")
 texture_progress = ExtResource("10_4kj8q")
@@ -131,10 +131,10 @@ metadata/_edit_lock_ = true
 
 [node name="StaminaOverlay" type="TextureRect" parent="UI/Control"]
 layout_mode = 0
-offset_left = 70.0
-offset_top = 142.0
-offset_right = 215.0
-offset_bottom = 177.0
+offset_left = 63.0
+offset_top = 141.0
+offset_right = 208.0
+offset_bottom = 176.0
 texture = ExtResource("13_jg0ui")
 metadata/_edit_lock_ = true
 
