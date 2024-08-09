@@ -20,13 +20,9 @@ var depleted = true
 
 func _physics_process(delta):
 	
-	if Input.is_action_pressed("action primary") and is_ready:	
-		var knife = KNIFE.instantiate()
-		knife.global_position = global_position
-		knife.rotate(global_position.direction_to(get_global_mouse_position()).angle())
-		world.add_child(knife)
-		knife_timer.start()
-		is_ready = false
+	if Input.is_action_pressed("action primary") and is_ready:
+		fire_knives()
+	
 	if Input.is_action_pressed("Sprint") and sprint > 1:
 		if depleted == true:
 			pass
@@ -79,3 +75,20 @@ func _on_pickup_zone_area_entered(area):
 	if area.is_in_group("Pickup"):
 		if area.has_method("collect"):
 			area.collect()
+
+func fire_knives():
+	is_ready = false
+	for i in range(WeaponKnife.knife_projectiles):
+		var knife = KNIFE.instantiate()
+		knife.global_position = global_position
+		var direction = global_position.direction_to(get_global_mouse_position())
+		knife.rotation = direction.angle()
+		world.add_child(knife)
+		await get_tree().create_timer(0.1).timeout
+		
+	knife_timer.start()
+	
+	knife_timer.timeout.connect(_on_knives_ready)
+
+func _on_knives_ready():
+	is_ready = true
