@@ -7,7 +7,7 @@ extends CanvasLayer
 @onready var shop = false
 
 func _ready():
-	PlayerStats.level_up.connect(level_up)
+	PlayerStats.level_up.connect(level_up) 
 	PlayerStats.take_damage.connect(update_health)
 	PlayerStats.add_xp.connect(update_xp)
 	PlayerStats.update_speed.connect(update_speed)

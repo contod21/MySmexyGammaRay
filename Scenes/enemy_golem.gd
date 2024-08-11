@@ -44,7 +44,7 @@ func take_damage(dmg):
 	DamageNumbers.display_number(dmg, global_position)
 	update_enemy_health()
 	if (health <= 0):
-		
+		EnemyStats.emit_signal("enemy_dead")
 		queue_free()
 		var new_explosion = EXPLOSION.instantiate()
 		new_explosion.global_position = global_position

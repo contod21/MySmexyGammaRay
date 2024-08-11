@@ -31,7 +31,9 @@ func _ready():
 func enemy_death():
 	dead_enemies += 1
 	if dead_enemies == monster_dict[current_level]:
-		pass
+		$SpawnTimer.start()
+		dead_enemies = 0
+	
 
 func spawn_enemy():
 		for i in range(monster_dict[current_level]):
@@ -40,3 +42,10 @@ func spawn_enemy():
 			m.global_position = spawn_point.global_position
 			world.add_child(m)
 			await get_tree().create_timer(2.0).timeout
+			
+func update_level():
+	spawn_enemy()
+
+func _on_spawn_timer_timeout():
+	current_level += 1
+	update_level()
