@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cw7bk6aehofv8"]
+[gd_scene load_steps=21 format=3 uid="uid://cw7bk6aehofv8"]
 
 [ext_resource type="Texture2D" uid="uid://biwty7xcu0t0k" path="res://Sprites/Heroes/oryx_16bit_fantasy_creatures_01.png" id="1_8nmf8"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_8yoph"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cv4i6koeqoiki" path="res://Game UI/StamTop.png" id="10_4kj8q"]
 [ext_resource type="Texture2D" uid="uid://dlf7o7l1paukl" path="res://Game UI/XpBar.png" id="12_ifh5p"]
 [ext_resource type="Texture2D" uid="uid://5y37b5sjvsj" path="res://Game UI/StamOver.png" id="13_jg0ui"]
+[ext_resource type="PackedScene" uid="uid://pvxjnwhltkxf" path="res://Scenes/light.tscn" id="16_2tk53"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7sjtw"]
 animations = [{
@@ -34,7 +35,7 @@ animations = [{
 radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hukqx"]
-radius = 46.0435
+radius = 41.0122
 
 [sub_resource type="ImageTexture" id="ImageTexture_1765h"]
 
@@ -49,8 +50,6 @@ frame_progress = 0.904937
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_eevq1")
-
-[node name="StaminaRegen" type="Timer" parent="."]
 
 [node name="KnifeTimer" type="Timer" parent="." groups=["Player"]]
 one_shot = true
@@ -184,14 +183,17 @@ text = "Level Up Stamina"
 
 [node name="TextureButton" type="TextureButton" parent="UI/Control"]
 layout_mode = 2
-offset_left = 1114.0
-offset_right = 2394.0
-offset_bottom = 1280.0
+offset_left = 1099.0
+offset_top = -1.0
+offset_right = 2379.0
+offset_bottom = 1279.0
 scale = Vector2(0.0273128, 0.0303666)
 texture_normal = ExtResource("5_m0bwk")
 texture_hover = ExtResource("6_gmve4")
 
-[connection signal="timeout" from="StaminaRegen" to="." method="_on_stamina_regen_timeout"]
+[node name="Light" parent="." instance=ExtResource("16_2tk53")]
+position = Vector2(-1, -0.999969)
+
 [connection signal="timeout" from="KnifeTimer" to="." method="_on_knife_timer_timeout"]
 [connection signal="area_entered" from="PickupZone" to="." method="_on_pickup_zone_area_entered"]
 [connection signal="visibility_changed" from="UI/Control/LevelUpNotice" to="UI" method="_on_level_up_notice_visibility_changed"]
