@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cv4i6koeqoiki" path="res://Game UI/StamTop.png" id="10_4kj8q"]
 [ext_resource type="Texture2D" uid="uid://dlf7o7l1paukl" path="res://Game UI/XpBar.png" id="12_ifh5p"]
 [ext_resource type="Texture2D" uid="uid://5y37b5sjvsj" path="res://Game UI/StamOver.png" id="13_jg0ui"]
-[ext_resource type="PackedScene" uid="uid://pvxjnwhltkxf" path="res://Scenes/light.tscn" id="16_2tk53"]
+[ext_resource type="Texture2D" uid="uid://kj18xm6owq0u" path="res://1.png" id="16_uwilu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7sjtw"]
 animations = [{
@@ -191,8 +191,11 @@ scale = Vector2(0.0273128, 0.0303666)
 texture_normal = ExtResource("5_m0bwk")
 texture_hover = ExtResource("6_gmve4")
 
-[node name="Light" parent="." instance=ExtResource("16_2tk53")]
-position = Vector2(-1, -0.999969)
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.666667, 0, 0.639216)
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("16_uwilu")
 
 [connection signal="timeout" from="KnifeTimer" to="." method="_on_knife_timer_timeout"]
 [connection signal="area_entered" from="PickupZone" to="." method="_on_pickup_zone_area_entered"]
