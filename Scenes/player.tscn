@@ -192,11 +192,10 @@ texture_normal = ExtResource("5_m0bwk")
 texture_hover = ExtResource("6_gmve4")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(1, 0.666667, 0, 0.639216)
+color = Color(0.76662, 0.76662, 0.76662, 1)
 blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("16_uwilu")
-texture_scale = 2.0
 
 [connection signal="timeout" from="KnifeTimer" to="." method="_on_knife_timer_timeout"]
 [connection signal="area_entered" from="PickupZone" to="." method="_on_pickup_zone_area_entered"]

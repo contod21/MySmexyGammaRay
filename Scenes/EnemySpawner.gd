@@ -34,6 +34,8 @@ func enemy_death():
 	
 	if dead_enemies == monster_dict[current_level]:
 		$SpawnTimer.start()
+		EnemyStats.golem_max_health += 10
+		EnemyStats.golem_damage += 10
 		dead_enemies = 0
 	
 
@@ -46,8 +48,6 @@ func spawn_enemy():
 			await get_tree().create_timer(2.0).timeout
 			
 func update_level(level):
-	EnemyStats.golem_max_health += 10
-	EnemyStats.golem_damage += 10
 	print("Level" + str(level))
 	spawn_enemy()
 
