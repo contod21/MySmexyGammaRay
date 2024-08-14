@@ -196,6 +196,7 @@ color = Color(1, 0.666667, 0, 0.639216)
 blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("16_uwilu")
+texture_scale = 2.0
 
 [connection signal="timeout" from="KnifeTimer" to="." method="_on_knife_timer_timeout"]
 [connection signal="area_entered" from="PickupZone" to="." method="_on_pickup_zone_area_entered"]
