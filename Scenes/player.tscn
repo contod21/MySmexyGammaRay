@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cw7bk6aehofv8"]
+[gd_scene load_steps=22 format=3 uid="uid://cw7bk6aehofv8"]
 
 [ext_resource type="Texture2D" uid="uid://biwty7xcu0t0k" path="res://Sprites/Heroes/oryx_16bit_fantasy_creatures_01.png" id="1_8nmf8"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_8yoph"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://cv4i6koeqoiki" path="res://Game UI/StamTop.png" id="10_4kj8q"]
 [ext_resource type="Texture2D" uid="uid://dlf7o7l1paukl" path="res://Game UI/XpBar.png" id="12_ifh5p"]
 [ext_resource type="Texture2D" uid="uid://5y37b5sjvsj" path="res://Game UI/StamOver.png" id="13_jg0ui"]
-[ext_resource type="Texture2D" uid="uid://kj18xm6owq0u" path="res://1.png" id="16_uwilu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7sjtw"]
 animations = [{
@@ -39,6 +38,15 @@ radius = 41.0122
 
 [sub_resource type="ImageTexture" id="ImageTexture_1765h"]
 
+[sub_resource type="Gradient" id="Gradient_4j4ae"]
+offsets = PackedFloat32Array(0.448052, 0.590909)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3emmj"]
+gradient = SubResource("Gradient_4j4ae")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_8yoph")
 
@@ -52,6 +60,9 @@ frame_progress = 0.904937
 shape = SubResource("CircleShape2D_eevq1")
 
 [node name="KnifeTimer" type="Timer" parent="." groups=["Player"]]
+one_shot = true
+
+[node name="FlareTimer" type="Timer" parent="." groups=["Player"]]
 one_shot = true
 
 [node name="PickupZone" type="Area2D" parent="."]
@@ -195,9 +206,12 @@ texture_hover = ExtResource("6_gmve4")
 color = Color(0.76662, 0.76662, 0.76662, 1)
 blend_mode = 2
 shadow_enabled = true
-texture = ExtResource("16_uwilu")
+texture = SubResource("GradientTexture2D_3emmj")
+texture_scale = 9.0
 
 [connection signal="timeout" from="KnifeTimer" to="." method="_on_knife_timer_timeout"]
+[connection signal="timeout" from="FlareTimer" to="." method="_on_knife_timer_timeout"]
+[connection signal="timeout" from="FlareTimer" to="." method="_on_flare_timer_timeout"]
 [connection signal="area_entered" from="PickupZone" to="." method="_on_pickup_zone_area_entered"]
 [connection signal="visibility_changed" from="UI/Control/LevelUpNotice" to="UI" method="_on_level_up_notice_visibility_changed"]
 [connection signal="pressed" from="UI/Control/LevelUpNotice/MarginContainer/VBoxContainer/btn_health_level" to="UI" method="_on_btn_health_level_pressed"]

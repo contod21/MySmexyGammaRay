@@ -7,10 +7,13 @@ extends CharacterBody2D
 @export var SPEED_BONUS := 1.0
 @onready var sprite = $Sprite
 const KNIFE = preload("res://Scenes/knife.tscn")
+const FLARE = preload("res://Scenes/flare.tscn")
 @onready var world = get_node("/root/World")
 var direction = Vector2.ZERO
 var is_ready: bool = true
+var is_flare_ready: bool = true
 @onready var knife_timer = $KnifeTimer
+@onready var flare_timer = $FlareTimer
 var sprint = 100
 var sprint_stamina_depletor := 0.9
 var sprint_stamina_increase := 0.4
@@ -22,6 +25,8 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("action primary") and is_ready:
 		fire_knives()
+	if Input.is_action_pressed("action secondary") and is_ready:
+		fire_flare()
 	
 	if Input.is_action_pressed("Sprint") and sprint > 1:
 		if depleted == true:
@@ -66,10 +71,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _on_knife_timer_timeout():
-	is_ready = true
-
-
 
 func _on_pickup_zone_area_entered(area):
 	if area.is_in_group("Pickup"):
@@ -87,8 +88,18 @@ func fire_knives():
 		await get_tree().create_timer(0.1).timeout
 		
 	knife_timer.start()
-	
-	knife_timer.timeout.connect(_on_knives_ready)
 
-func _on_knives_ready():
+func fire_flare():
+	is_ready = false
+	var flare = FLARE.instantiate()
+	flare.global_position = get_global_mouse_position()
+	world.add_child(flare)
+		
+	flare_timer.start()
+
+func _on_knife_timer_timeout():
 	is_ready = true
+
+
+func _on_flare_timer_timeout():
+	is_flare_ready = true

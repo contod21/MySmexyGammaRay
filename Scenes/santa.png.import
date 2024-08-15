@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyvwr1gni0x1q"
-path="res://.godot/imported/New Piskel-3.png.png-3b6e7db8d9f34669fe8964f7b947adac.ctex"
+uid="uid://cs5mk8kwtholc"
+path="res://.godot/imported/santa.png-ed0eec35e7daec58ba350ab00144bf3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://New Piskel-3.png.png"
-dest_files=["res://.godot/imported/New Piskel-3.png.png-3b6e7db8d9f34669fe8964f7b947adac.ctex"]
+source_file="res://Scenes/santa.png"
+dest_files=["res://.godot/imported/santa.png-ed0eec35e7daec58ba350ab00144bf3c.ctex"]
 
 [params]
 
