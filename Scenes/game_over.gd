@@ -21,4 +21,3 @@ func _on_retry_pressed():
 	WeaponKnife.knife_knockback = 10
 	EnemyStats.golem_max_health = 10
 	EnemyStats.golem_damage = 5
-

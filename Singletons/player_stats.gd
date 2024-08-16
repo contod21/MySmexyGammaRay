@@ -42,4 +42,3 @@ func add_max_health():
 func reduce_knife_timer():
 	knife_timer -= 0.1
 	emit_signal("update_speed")
-
