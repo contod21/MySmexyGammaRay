@@ -70,7 +70,6 @@ texture = ExtResource("2_fk0mh")
 libraries = {
 "": SubResource("AnimationLibrary_deonb")
 }
-autoplay = "new_animation"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 blend_mode = 2
