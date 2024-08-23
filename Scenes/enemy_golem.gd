@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 69
+const SPEED = 95
 const JUMP_VELOCITY = -400.0
 @onready var sprite = $Sprite
 @onready var player = get_tree().get_first_node_in_group("Player")
