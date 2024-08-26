@@ -2,20 +2,18 @@ extends Node
 
 @onready var current_level = 0
 @onready var label = $Label
-var enemyNum
-var string
 
 @onready var monster_dict = {
-	1: {enemyNum: 10, string: "One"},
-	2: {enemyNum: 15, string: "Two"},
-	3: {enemyNum: 20, string: "Three"},
-	4: {enemyNum: 30, string: "Four"},
-	5: {enemyNum: 40, string: "Five"},
-	6: {enemyNum: 50, string: "Six"},
-	7: {enemyNum: 60, string: "Seven"},
-	8: {enemyNum: 70, string: "Eight"},
-	9: {enemyNum: 80, string: "Nine"},
-	10: {enemyNum: 100, string: "Ten"}
+	1: {"enemyNum": 10, "text": "One"},
+	2: {"enemyNum": 15, "text": "Two"},
+	3: {"enemyNum": 20, "text": "Three"},
+	4: {"enemyNum": 30, "text": "Four"},
+	5: {"enemyNum": 40, "text": "Five"},
+	6: {"enemyNum": 50, "text": "Six"},
+	7: {"enemyNum": 60, "text": "Seven"},
+	8: {"enemyNum": 70, "text": "Eight"},
+	9: {"enemyNum": 80, "text": "Nine"},
+	10: {"enemyNum": 100, "text": "Ten"}
 }
 @onready var spawn_points = $SpawnPoints.get_children()
 
@@ -38,12 +36,12 @@ func enemy_death():
 	if dead_enemies == monster_dict[current_level].enemyNum:
 		$SpawnTimer.start()
 		EnemyStats.golem_max_health += 10
-		EnemyStats.golem_damage += 10
+		EnemyStats.golem_damage += 5
 		dead_enemies = 0
 	
 
 func spawn_enemy():
-		for i in range(monster_dict[current_level].enemyNum):
+		for i in range(monster_dict[current_level]["enemyNum"]):
 			var m = monster.instantiate()
 			var spawn_point = spawn_points.pick_random()
 			m.global_position = spawn_point.global_position
@@ -51,9 +49,12 @@ func spawn_enemy():
 			await get_tree().create_timer(1.0).timeout
 			
 func update_level(level):
-	print("Level" + str(level))
-	label.text = "Round" + monster_dict[level].string
+	label.visible = true
+	print("Level " + str(level))
+	label.text = "Round "  + monster_dict[level]["text"]
 	spawn_enemy()
+	await get_tree().create_timer(2.0).timeout
+	label.visible = false
 
 func _on_spawn_timer_timeout():
 	current_level += 1
