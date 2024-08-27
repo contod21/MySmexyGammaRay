@@ -36,7 +36,7 @@ func enemy_death():
 	if dead_enemies == monster_dict[current_level].enemyNum:
 		$SpawnTimer.start()
 		EnemyStats.golem_max_health += 10
-		EnemyStats.golem_damage += 5
+		EnemyStats.golem_damage += 2
 		dead_enemies = 0
 	
 

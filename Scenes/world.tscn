@@ -251,6 +251,7 @@ one_shot = true
 autostart = true
 
 [node name="Label" type="Label" parent="Camera/EnemySpawner"]
+visible = false
 material = SubResource("CanvasItemMaterial_5txkm")
 offset_left = -208.0
 offset_top = -289.0
