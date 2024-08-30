@@ -20,10 +20,10 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_8nmf8")
+"texture": ExtResource("2_itysm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_itysm")
+"texture": ExtResource("1_8nmf8")
 }],
 "loop": true,
 "name": &"default",

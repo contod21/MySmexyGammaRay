@@ -41,7 +41,7 @@ func enemy_death():
 	
 
 func spawn_enemy():
-		for i in range(monster_dict[current_level]["enemyNum"]):
+		for i in range(monster_dict[current_level].enemyNum):
 			var m = monster.instantiate()
 			var spawn_point = spawn_points.pick_random()
 			m.global_position = spawn_point.global_position
@@ -51,7 +51,7 @@ func spawn_enemy():
 func update_level(level):
 	label.visible = true
 	print("Level " + str(level))
-	label.text = "Round "  + monster_dict[level]["text"]
+	label.text = "Round "  + monster_dict[level].text
 	spawn_enemy()
 	await get_tree().create_timer(2.0).timeout
 	label.visible = false
