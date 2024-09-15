@@ -194,10 +194,10 @@ text = "Level Up Stamina"
 
 [node name="TextureButton" type="TextureButton" parent="UI/Control"]
 layout_mode = 2
-offset_left = 1753.0
-offset_top = -415.0
-offset_right = 3033.0
-offset_bottom = 865.0
+offset_left = 1728.0
+offset_top = -318.0
+offset_right = 3008.0
+offset_bottom = 962.0
 scale = Vector2(0.0273128, 0.0303666)
 texture_normal = ExtResource("5_m0bwk")
 texture_hover = ExtResource("6_gmve4")
