@@ -13,6 +13,8 @@ const EXPERIENCE_GEM = preload("res://Scenes/experience_gem.tscn")
 @export var health = 10
 @export var max_health = 10
 
+@onready var los = $LineOfSight
+
 func _ready():
 	health = EnemyStats.golem_max_health
 	max_health = EnemyStats.golem_max_health
@@ -27,7 +29,7 @@ func check_collisions():
 				PlayerStats.damage_player(EnemyStats.golem_damage)
 				damage_timer.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction_to_player = global_position.direction_to(player.global_position)
 	velocity = direction_to_player * SPEED
 	

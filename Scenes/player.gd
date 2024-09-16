@@ -21,7 +21,7 @@ var depleted = true
 @onready var stamina = $UI/Control/Stamina
 @onready var stamOver = $UI/Control/StaminaOverlay
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if Input.is_action_pressed("action primary") and is_ready:
 		fire_knives()

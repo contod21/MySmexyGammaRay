@@ -6,17 +6,13 @@ extends Node
 @onready var monster = preload("res://Scenes/enemy_golem.tscn")
 
 func _ready():
-	add_to_group("world")
-	randomize()
+	await get_tree().create_timer(1.0).timeout
 	spawn_enemy()
 
 
 func spawn_enemy():
-	print("Spawn Points Found: ", spawn_points.size())
 	for spawn in spawn_points:
-		print("Spawning at: ", spawn.global_position)
-		for i in range(randi_range(1,5)):
+		for i in range(randi_range(1,3)):
 			var m = monster.instantiate()
-			m.global_position = spawn.global_position
+			m.global_position = spawn.global_position + Vector2(randi_range(1,4), randi_range(1,4))
 			world.add_child(m)
-			print("Spawned Monster at: ", m.global_position)
