@@ -95,4 +95,4 @@ radius = 500.0
 debug_enabled = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(70, 0)
+target_position = Vector2(500, 0)

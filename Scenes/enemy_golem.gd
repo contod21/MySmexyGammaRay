@@ -16,6 +16,8 @@ const EXPERIENCE_GEM = preload("res://Scenes/experience_gem.tscn")
 @onready var los = $RayCast2D
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
 
+var player_spotted: bool = false
+
 func _ready():
 	health = EnemyStats.golem_max_health
 	max_health = EnemyStats.golem_max_health
@@ -32,19 +34,34 @@ func check_collisions():
 				damage_timer.start()
 
 func _physics_process(_delta):
-	print("https://www.youtube.com/watch?v=WNF8U_ogrL8")
-	nav.target_position = player.global_position
-	var direction = (nav.get_next_path_position() - global_position).normalized()
-	translate(direction * SPEED * _delta)
 	
-	los.look_at(player.global_position)
+	if player:
+		los.look_at(player.global_position)
+		check_player_in_detection()
+		if (player_spotted):
+			var direction = generate_path()
+			translate(direction * SPEED * _delta)
 	
 	if velocity.x > 0:
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false 
 	
-	check_collisions()
+	move()
+
+func check_player_in_detection() -> bool:
+	var collider = los.get_collider()
+	if collider and collider.is_in_group("Player"):
+		player_spotted = true
+		return true
+	return false
+
+func generate_path():
+	nav.target_position = player.global_position
+	var direction = (nav.get_next_path_position() - global_position).normalized()
+	return direction
+
+func move():
 	move_and_slide()
 
 func take_damage(dmg):
