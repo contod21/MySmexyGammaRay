@@ -13,11 +13,13 @@ const EXPERIENCE_GEM = preload("res://Scenes/experience_gem.tscn")
 @export var health = 10
 @export var max_health = 10
 
-@onready var los = $LineOfSight
+@onready var los = $RayCast2D
+@onready var nav : NavigationAgent2D = $NavigationAgent2D
 
 func _ready():
 	health = EnemyStats.golem_max_health
 	max_health = EnemyStats.golem_max_health
+	nav.target_position = player.global_position
 
 func check_collisions():
 	if not damage_timer.is_stopped():
@@ -30,8 +32,12 @@ func check_collisions():
 				damage_timer.start()
 
 func _physics_process(_delta):
-	var direction_to_player = global_position.direction_to(player.global_position)
-	velocity = direction_to_player * SPEED
+	print("https://www.youtube.com/watch?v=WNF8U_ogrL8")
+	nav.target_position = player.global_position
+	var direction = (nav.get_next_path_position() - global_position).normalized()
+	translate(direction * SPEED * _delta)
+	
+	los.look_at(player.global_position)
 	
 	if velocity.x > 0:
 		sprite.flip_h = true
