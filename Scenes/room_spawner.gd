@@ -12,7 +12,7 @@ func _ready():
 
 func spawn_enemy():
 	for spawn in spawn_points:
-		for i in range(randi_range(1,3)):
+		for i in range(randi_range(1,4)):
 			var m = monster.instantiate()
 			m.global_position = spawn.global_position + Vector2(randi_range(1,4), randi_range(1,4))
 			world.add_child(m)

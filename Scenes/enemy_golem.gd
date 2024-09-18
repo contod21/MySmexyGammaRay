@@ -48,6 +48,7 @@ func _physics_process(_delta):
 		sprite.flip_h = false 
 	
 	move()
+	check_collisions()
 
 func check_player_in_detection() -> bool:
 	var collider = los.get_collider()

@@ -6,14 +6,14 @@ extends CanvasLayer
 @onready var knife_timer = $"../KnifeTimer"
 @onready var shop = false
 
+@onready var pause_menu = $Control/PauseMenu
+
 func _ready():
 	PlayerStats.level_up.connect(level_up) 
 	PlayerStats.take_damage.connect(update_health)
 	PlayerStats.add_xp.connect(update_xp)
 	PlayerStats.update_speed.connect(update_speed)
 	WeaponKnife.level_up_knife()
-	
-
 
 func level_up():
 	update_xp()
@@ -63,3 +63,22 @@ func _on_texture_button_pressed():
 	else:
 		get_tree().paused = false
 		shop = false
+
+
+func _on_btn_resume_pressed() -> void:
+	pause_menu.visible = false
+
+
+func _on_pause_menu_visibility_changed() -> void:
+	if pause_menu.visible == true:
+		get_tree().paused = true
+	else:
+		get_tree().paused = false
+
+
+func _on_btn_menu_return_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+
+
+func _on_btn_quit_game_pressed() -> void:
+	get_tree().quit()

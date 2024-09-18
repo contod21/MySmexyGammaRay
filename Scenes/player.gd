@@ -21,12 +21,20 @@ var depleted = true
 @onready var stamina = $UI/Control/Stamina
 @onready var stamOver = $UI/Control/StaminaOverlay
 
+@onready var pause = $UI/Control/PauseMenu
+
 func _physics_process(_delta):
 	
 	if Input.is_action_pressed("action primary") and is_ready:
 		fire_knives()
 	if Input.is_action_pressed("action secondary") and is_ready:
 		fire_flare()
+	
+	if Input.is_action_just_pressed("p_key"):
+		if pause.visible == true:
+			pause.visible = false
+		else:
+			pause.visible = true
 	
 	if Input.is_action_pressed("Sprint") and sprint > 1:
 		if depleted == true:
