@@ -255,6 +255,9 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_3emmj")
 texture_scale = 9.0
 
+[node name="SprintTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="KnifeTimer" to="." method="_on_knife_timer_timeout"]
 [connection signal="timeout" from="FlareTimer" to="." method="_on_flare_timer_timeout"]
 [connection signal="timeout" from="FlareTimer" to="." method="_on_knife_timer_timeout"]

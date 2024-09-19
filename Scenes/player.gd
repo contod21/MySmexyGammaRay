@@ -23,6 +23,8 @@ var depleted = true
 
 @onready var pause = $UI/Control/PauseMenu
 
+@onready var sprint_timer = $SprintTimer
+
 func _physics_process(_delta):
 	
 	if Input.is_action_pressed("action primary") and is_ready:
@@ -36,7 +38,7 @@ func _physics_process(_delta):
 		else:
 			pause.visible = true
 	
-	if Input.is_action_pressed("Sprint") and sprint > 1:
+	if Input.is_action_pressed("Sprint") and sprint > 1 and sprint_timer.is_stopped():
 		if depleted == true:
 			pass
 		else:
@@ -45,7 +47,10 @@ func _physics_process(_delta):
 	else:
 		SPEED_BONUS = 1.0
 		sprint = clamp(sprint + (sprint_stamina_increase * sprint/50), 1, 100)
-		
+	
+	if Input.is_action_just_released("Sprint"):
+		if sprint_timer.is_stopped():
+			sprint_timer.start()
 	
 	if sprint > 99:
 		stamina.visible = false
@@ -77,7 +82,6 @@ func _physics_process(_delta):
 		
 
 	move_and_slide()
-
 
 
 func _on_pickup_zone_area_entered(area):
