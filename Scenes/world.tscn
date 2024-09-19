@@ -1,10 +1,20 @@
 [gd_scene load_steps=26 format=4 uid="uid://c4alpqqg2f8du"]
 
+[ext_resource type="Script" path="res://Scenes/world.gd" id="1_03lny"]
 [ext_resource type="PackedScene" uid="uid://cw7bk6aehofv8" path="res://Scenes/player.tscn" id="1_rqn8p"]
-[ext_resource type="Script" path="res://Scenes/EnemySpawner.gd" id="2_chj1s"]
 [ext_resource type="FontFile" uid="uid://lto20qrbnowu" path="res://Baron Kuffner.otf" id="2_te0ce"]
 [ext_resource type="Texture2D" uid="uid://cnf1idqfwjmna" path="res://Sprites/Worlds/oryx_16bit_fantasy_world_trans.png" id="3_3gnar"]
 [ext_resource type="Script" path="res://Scenes/room_spawner.gd" id="5_l7dwx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5txkm"]
+light_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_djgcv"]
+font = ExtResource("2_te0ce")
+font_size = 50
+font_color = Color(0.458472, 0, 0.0806755, 1)
+outline_size = 2
+outline_color = Color(0, 0.291515, 0.178933, 1)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fwl2d"]
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
@@ -301,24 +311,29 @@ sources/0 = SubResource("TileSetAtlasSource_4c3tt")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f7c7"]
 size = Vector2(3019, 2899.5)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5txkm"]
-light_mode = 1
-
-[sub_resource type="LabelSettings" id="LabelSettings_djgcv"]
-font = ExtResource("2_te0ce")
-font_size = 50
-font_color = Color(0.458472, 0, 0.0806755, 1)
-outline_size = 2
-outline_color = Color(0, 0.291515, 0.178933, 1)
-
 [node name="World" type="Node2D" groups=["world"]]
 position = Vector2(-13, 3)
+script = ExtResource("1_03lny")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(-694, 742)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Camera"]
-remote_path = NodePath("../../EnemySpawner")
+[node name="Label" type="Label" parent="Camera"]
+visible = false
+z_index = 2
+material = SubResource("CanvasItemMaterial_5txkm")
+offset_left = -280.0
+offset_top = -294.0
+offset_right = 297.0
+offset_bottom = -114.0
+theme_override_colors/font_color = Color(0, 0.355903, 0.00199526, 1)
+theme_override_colors/font_shadow_color = Color(0.602482, 0.0177563, 0, 1)
+theme_override_fonts/font = ExtResource("2_te0ce")
+theme_override_font_sizes/font_size = 50
+text = "Chat is this real?"
+label_settings = SubResource("LabelSettings_djgcv")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Player" parent="." instance=ExtResource("1_rqn8p")]
 position = Vector2(-694, 742)
@@ -393,121 +408,74 @@ position = Vector2(3386, -1725)
 position = Vector2(874.5, -577.75)
 shape = SubResource("RectangleShape2D_3f7c7")
 
-[node name="EnemySpawner" type="Node2D" parent="."]
-position = Vector2(-694, 742)
-script = ExtResource("2_chj1s")
+[node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(-1389, 1482)
 
-[node name="SpawnPoints" type="Node2D" parent="EnemySpawner"]
-position = Vector2(-695, 740)
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(927, -3244)
 
-[node name="Marker2D17" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-217, 394)
+[node name="Marker2D2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(2623, -3172)
 
-[node name="Marker2D20" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(214, 395)
-rotation = 2.81944
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1293, -2309)
 
-[node name="Marker2D22" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(359, 394)
-rotation = 2.81944
+[node name="Marker2D4" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1736, -2800)
 
-[node name="Marker2D27" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-359, 394)
-rotation = 2.81944
+[node name="Marker2D5" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(2797, -2410)
 
-[node name="Marker2D31" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-505, 394)
-rotation = 2.81944
+[node name="Marker2D6" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1820, -1301)
 
-[node name="Marker2D33" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-649, 226)
-rotation = 2.81944
+[node name="Marker2D7" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(2941, -1121)
 
-[node name="Marker2D36" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-649, 83)
-rotation = 2.81944
+[node name="Marker2D8" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(903, -1205)
 
-[node name="Marker2D37" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-649, -62)
-rotation = 2.81944
+[node name="Marker2D9" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(921, -1840)
 
-[node name="Marker2D41" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-648, -207)
-rotation = 2.81944
+[node name="Marker2D10" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1910, -2164)
 
-[node name="Marker2D18" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-241.348, -398.348)
+[node name="Marker2D11" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(3366, -3045)
 
-[node name="Marker2D21" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(189.652, -397.348)
-rotation = 2.81944
+[node name="Marker2D12" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1316, -3129)
 
-[node name="Marker2D23" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(334.652, -398.348)
-rotation = 2.81944
+[node name="Marker2D13" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1849, -3309)
 
-[node name="Marker2D28" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-383.348, -398.348)
-rotation = 2.81944
+[node name="Marker2D14" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(3431, -2578)
 
-[node name="Marker2D32" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-529.348, -398.348)
-rotation = 2.81944
+[node name="Marker2D15" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(980, -2698)
 
-[node name="Marker2D19" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-97, -398)
+[node name="Marker2D16" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(2646, -1637)
 
-[node name="Marker2D24" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(47, -398)
+[node name="Marker2D17" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(2598, -3681)
 
-[node name="Marker2D25" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(455, -398)
+[node name="Marker2D18" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(3437, -888)
 
-[node name="Marker2D34" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(645.652, 226.652)
-rotation = 2.81944
+[node name="Marker2D19" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1897, -906)
 
-[node name="Marker2D38" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(645.652, 83.6517)
-rotation = 2.81944
+[node name="Marker2D20" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1172, -876)
 
-[node name="Marker2D39" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(645.652, -61.3483)
-rotation = 2.81944
+[node name="Marker2D21" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1268, -1607)
 
-[node name="Marker2D42" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(646.652, -206.348)
-rotation = 2.81944
-
-[node name="Marker2D26" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(71, 394)
-
-[node name="Marker2D29" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(-73, 394)
-
-[node name="Marker2D30" type="Marker2D" parent="EnemySpawner/SpawnPoints"]
-position = Vector2(503, 393)
-rotation = 2.81944
-
-[node name="SpawnTimer" type="Timer" parent="EnemySpawner"]
+[node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Label" type="Label" parent="EnemySpawner"]
-visible = false
-z_index = 2
-material = SubResource("CanvasItemMaterial_5txkm")
-offset_left = -218.0
-offset_top = -307.0
-offset_right = 247.0
-offset_bottom = -127.0
-theme_override_colors/font_color = Color(0, 0.355903, 0.00199526, 1)
-theme_override_colors/font_shadow_color = Color(0.602482, 0.0177563, 0, 1)
-theme_override_fonts/font = ExtResource("2_te0ce")
-theme_override_font_sizes/font_size = 50
-text = "Chat is this real?"
-label_settings = SubResource("LabelSettings_djgcv")
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[connection signal="body_entered" from="Area2D" to="EnemySpawner" method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="EnemySpawner/SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

@@ -17,8 +17,10 @@ func _ready():
 
 func level_up():
 	update_xp()
-	if PlayerStats.knife_timer <= 0.1:
+	if PlayerStats.knife_timer <= 0.2:
 		$Control/LevelUpNotice/MarginContainer/VBoxContainer/btn_speed_level.disabled = true
+	if WeaponKnife.knife_level == 10:
+		$Control/LevelUpNotice/MarginContainer/VBoxContainer/btn_kife_level.disabled = true
 	level_up_notice.visible = true
 
 func update_xp():

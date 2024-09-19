@@ -37,5 +37,5 @@ func level_up_knife():
 			knife_damage = 40
 			knife_projectiles = 2
 		10:
-			knife_damage = 40
-			knife_projectiles = 3
+			knife_damage = 50
+			knife_projectiles = 2
