@@ -47,13 +47,13 @@ func enemy_death():
 	
 
 func spawn_enemy():
-		for i in range(monster_dict[current_level].enemyNum):
-			var m = monster.instantiate()
-			m.player_spotted = true
-			var spawn_point = spawn_points.pick_random()
-			m.global_position = spawn_point.global_position
-			world.add_child(m)
-			await get_tree().create_timer(1.0).timeout
+	for i in range(monster_dict[current_level].enemyNum):
+		var m = monster.instantiate()
+		m.player_spotted = true
+		var spawn_point = spawn_points.pick_random()
+		m.global_position = spawn_point.global_position
+		world.add_child(m)
+		await get_tree().create_timer(1.0).timeout
 			
 func update_level(level):
 	label.visible = true
@@ -62,6 +62,9 @@ func update_level(level):
 	spawn_enemy()
 	await get_tree().create_timer(2.0).timeout
 	label.visible = false
+
+func win_game():
+	pass
 
 func _on_spawn_timer_timeout():
 	current_level += 1
