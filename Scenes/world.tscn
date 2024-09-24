@@ -334,7 +334,7 @@ theme_override_colors/font_color = Color(0, 0.355903, 0.00199526, 1)
 theme_override_colors/font_shadow_color = Color(0.602482, 0.0177563, 0, 1)
 theme_override_fonts/font = ExtResource("2_te0ce")
 theme_override_font_sizes/font_size = 50
-text = "Chat is this real?"
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
 label_settings = SubResource("LabelSettings_djgcv")
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -342,10 +342,10 @@ autowrap_mode = 3
 [node name="TimeTaken" type="Label" parent="Camera"]
 z_index = 5
 material = SubResource("CanvasItemMaterial_qmqty")
-offset_left = 529.0
-offset_top = -320.0
-offset_right = 911.0
-offset_bottom = -297.0
+offset_left = 507.0
+offset_top = -318.0
+offset_right = 889.0
+offset_bottom = -295.0
 text = "0:00
 "
 
@@ -407,9 +407,6 @@ position = Vector2(-1283, 2277)
 [node name="Marker2D9" type="Marker2D" parent="RoomSpawner/SpawnPoints"]
 position = Vector2(723, 1998)
 
-[node name="Marker2D10" type="Marker2D" parent="RoomSpawner/SpawnPoints"]
-position = Vector2(2577, 2169)
-
 [node name="Marker2D11" type="Marker2D" parent="RoomSpawner/SpawnPoints"]
 position = Vector2(3134, 659)
 
@@ -417,7 +414,19 @@ position = Vector2(3134, 659)
 position = Vector2(4224, -55)
 
 [node name="Marker2D13" type="Marker2D" parent="RoomSpawner/SpawnPoints"]
-position = Vector2(3386, -1725)
+position = Vector2(3126, -1636)
+
+[node name="Marker2D14" type="Marker2D" parent="RoomSpawner/SpawnPoints"]
+position = Vector2(-1827, 485)
+
+[node name="Marker2D15" type="Marker2D" parent="RoomSpawner/SpawnPoints"]
+position = Vector2(-1827, 485)
+
+[node name="Marker2D10" type="Marker2D" parent="RoomSpawner/SpawnPoints"]
+position = Vector2(2577, 2169)
+
+[node name="Marker2D16" type="Marker2D" parent="RoomSpawner/SpawnPoints"]
+position = Vector2(3764, 2474)
 
 [node name="Area2D" type="Area2D" parent="."]
 metadata/_edit_lock_ = true

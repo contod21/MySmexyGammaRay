@@ -259,8 +259,8 @@ texture_scale = 9.0
 one_shot = true
 
 [connection signal="timeout" from="KnifeTimer" to="." method="_on_knife_timer_timeout"]
-[connection signal="timeout" from="FlareTimer" to="." method="_on_knife_timer_timeout"]
 [connection signal="timeout" from="FlareTimer" to="." method="_on_flare_timer_timeout"]
+[connection signal="timeout" from="FlareTimer" to="." method="_on_knife_timer_timeout"]
 [connection signal="area_entered" from="PickupZone" to="." method="_on_pickup_zone_area_entered"]
 [connection signal="visibility_changed" from="UI/Control/LevelUpNotice" to="UI" method="_on_level_up_notice_visibility_changed"]
 [connection signal="pressed" from="UI/Control/LevelUpNotice/MarginContainer/VBoxContainer/btn_health_level" to="UI" method="_on_btn_health_level_pressed"]

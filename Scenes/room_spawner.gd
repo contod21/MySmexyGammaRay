@@ -4,6 +4,7 @@ extends Node
 
 @onready var world = get_node("/root/World")
 @onready var monster = preload("res://Scenes/enemy_golem.tscn")
+@onready var spawned = 0
 
 func _ready():
 	await get_tree().create_timer(1.0).timeout
@@ -12,7 +13,8 @@ func _ready():
 
 func spawn_enemy():
 	for spawn in spawn_points:
-		for i in range(randi_range(1,10)):
+		for i in range(randi_range(1,6)):
+			spawned += 1
 			var m = monster.instantiate()
 			m.global_position = spawn.global_position + Vector2(randi_range(1,4), randi_range(1,4))
 			world.add_child(m)

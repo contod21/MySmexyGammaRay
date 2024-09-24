@@ -25,6 +25,7 @@ var started = false
 
 @onready var rand = RandomNumberGenerator.new()
 @onready var dead_enemies = 0
+@onready var total_enemies = 0
 
 func _ready():
 	print("ready")
@@ -38,6 +39,7 @@ func enemy_death():
 		return
 	
 	dead_enemies += 1
+	total_enemies += 1
 	
 	if dead_enemies == monster_dict[current_level].enemyNum:
 		$SpawnTimer.start()
@@ -64,7 +66,10 @@ func update_level(level):
 	label.visible = false
 
 func win_game():
-	pass
+	$Camera/TimeTaken.stop()
+	PlayerStats.player_time = $Camera/TimeTaken.time_elapsed
+	PlayerStats.enemies_killed = total_enemies
+	PlayerStats.num_enemies = $RoomSpawner.spawned + 475
 
 func _on_spawn_timer_timeout():
 	current_level += 1
