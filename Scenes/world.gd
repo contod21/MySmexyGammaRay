@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var current_level = 0
+@onready var current_level = 9
 @onready var label = $Camera/Label
 @onready var tiemr = $SpawnTimer
 var started = false
@@ -15,7 +15,7 @@ var started = false
 	7: {"enemyNum": 60, "text": "I'm going to get you this time!"},
 	8: {"enemyNum": 70, "text": "Are you dead yet?"},
 	9: {"enemyNum": 80, "text": "NEIN!"},
-	10: {"enemyNum": 100, "text": "You're surerly dead this time."}
+	10: {"enemyNum": 1, "text": "You're surerly dead this time."}
 }
 @onready var spawn_points = $SpawnPoints.get_children()
 
@@ -70,9 +70,13 @@ func win_game():
 	PlayerStats.player_time = $Camera/TimeTaken.time_elapsed
 	PlayerStats.enemies_killed = total_enemies
 	PlayerStats.num_enemies = $RoomSpawner.spawned + 475
+	
+	get_tree().change_scene_to_file("res://Scenes/win_screen.tscn")
 
 func _on_spawn_timer_timeout():
 	current_level += 1
+	if current_level == 11:
+		win_game()
 	update_level(current_level)
 
 

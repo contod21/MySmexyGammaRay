@@ -320,10 +320,11 @@ position = Vector2(-13, 3)
 script = ExtResource("1_03lny")
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(-3420, -2369)
+position = Vector2(-727, 606)
 script = ExtResource("2_jqi4h")
 
 [node name="Label" type="Label" parent="Camera"]
+visible = false
 z_index = 2
 material = SubResource("CanvasItemMaterial_5txkm")
 offset_left = -280.0
@@ -350,7 +351,7 @@ text = "0:00
 "
 
 [node name="Player" parent="." instance=ExtResource("1_rqn8p")]
-position = Vector2(-3420, -2369)
+position = Vector2(-727, 606)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera")
@@ -376,6 +377,7 @@ tile_map_data = PackedByteArray("AADMAHgAAAAUABIAAADMAHcAAAAPABIAAADMAHYAAAAPABI
 tile_set = SubResource("TileSet_xl0if")
 
 [node name="RoomSpawner" type="Node2D" parent="."]
+visible = false
 script = ExtResource("5_l7dwx")
 
 [node name="SpawnPoints" type="Node2D" parent="RoomSpawner"]
