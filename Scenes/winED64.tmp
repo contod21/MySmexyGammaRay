@@ -3,16 +3,23 @@
 [ext_resource type="Script" path="res://Scenes/win_screen.gd" id="1_a5l1j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1s34o"]
-font_size = 40
+font_size = 50
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_a5l1j")
 
 [node name="Stats" type="Label" parent="."]
-offset_left = 14.0
-offset_top = 18.0
-offset_right = 391.0
-offset_bottom = 259.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.5
+offset_top = -120.5
+offset_right = 188.5
+offset_bottom = 120.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 text = "Game Stats:
 Time taken:
@@ -21,30 +28,21 @@ Enemies Killed:
 label_settings = SubResource("LabelSettings_1s34o")
 
 [node name="LineEdit" type="LineEdit" parent="."]
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -225.5
-offset_top = -48.0
-offset_right = 225.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = 174.0
+offset_right = 226.0
+offset_bottom = 222.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 placeholder_text = "What is your name?"
 max_length = 30
 clear_button_enabled = true
 shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -392.0
-offset_bottom = 459.0
-grow_horizontal = 0
-bbcode_enabled = true
-text = "[b]bold [i]bold italic [/i][/b] [i]italic[/i]"
 
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]

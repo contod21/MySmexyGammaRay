@@ -7,9 +7,9 @@ var player_max_health = 100
 var next_level = 15
 var knife_timer = 1
 var player_money = 0
-var player_time = 0.0
-var enemies_killed = 0
-var num_enemies = 0
+var player_time := 0.0
+var enemies_killed := 0.0
+var num_enemies := 0.0
 
 signal level_up
 signal add_xp

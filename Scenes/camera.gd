@@ -10,6 +10,9 @@ var time_string
 
 
 func _process(delta: float) -> void:
+	if is_stopped:
+		return
+	
 	time_elapsed += delta
 	minutes = time_elapsed / 60
 	seconds = fmod(time_elapsed, 60)

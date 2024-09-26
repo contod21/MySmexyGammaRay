@@ -41,7 +41,8 @@ func enemy_death():
 	dead_enemies += 1
 	total_enemies += 1
 	
-	if dead_enemies == monster_dict[current_level].enemyNum:
+	
+	if dead_enemies >= monster_dict[current_level].enemyNum:
 		$SpawnTimer.start()
 		EnemyStats.golem_max_health += 10
 		EnemyStats.golem_damage += 2
@@ -62,14 +63,17 @@ func update_level(level):
 	print(str(level))
 	label.text = monster_dict[level].text
 	spawn_enemy()
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	label.visible = false
 
 func win_game():
-	$Camera/TimeTaken.stop()
-	PlayerStats.player_time = $Camera/TimeTaken.time_elapsed
+	$Camera.stop()
+	label.visible = true
+	label.text = "Ahhhhhhhhh You got me right in the heart!"
+	await get_tree().create_timer(3.0).timeout
+	PlayerStats.player_time = $Camera.time_elapsed
 	PlayerStats.enemies_killed = total_enemies
-	PlayerStats.num_enemies = $RoomSpawner.spawned + 475
+	PlayerStats.num_enemies = $RoomSpawner.spawned + 475.0
 	
 	get_tree().change_scene_to_file("res://Scenes/win_screen.tscn")
 
@@ -77,7 +81,8 @@ func _on_spawn_timer_timeout():
 	current_level += 1
 	if current_level == 11:
 		win_game()
-	update_level(current_level)
+	else: 
+		update_level(current_level)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
