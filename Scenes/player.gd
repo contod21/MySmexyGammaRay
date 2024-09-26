@@ -7,7 +7,6 @@ extends CharacterBody2D
 @export var SPEED_BONUS := 1.0
 @onready var sprite = $Sprite
 const KNIFE = preload("res://Scenes/knife.tscn")
-const FLARE = preload("res://Scenes/flare.tscn")
 @onready var world = get_node("/root/World")
 var direction = Vector2.ZERO
 var is_ready: bool = true
@@ -29,8 +28,6 @@ func _physics_process(_delta):
 	
 	if Input.is_action_pressed("action primary") and is_ready:
 		fire_knives()
-	if Input.is_action_pressed("action secondary") and is_ready:
-		fire_flare()
 	
 	if Input.is_action_just_pressed("p_key"):
 		if pause.visible == true:
@@ -101,17 +98,5 @@ func fire_knives():
 		
 	knife_timer.start()
 
-func fire_flare():
-	is_ready = false
-	var flare = FLARE.instantiate()
-	flare.global_position = get_global_mouse_position()
-	world.add_child(flare)
-		
-	flare_timer.start()
-
 func _on_knife_timer_timeout():
 	is_ready = true
-
-
-func _on_flare_timer_timeout():
-	is_flare_ready = true

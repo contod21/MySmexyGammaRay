@@ -15,7 +15,7 @@ var started = false
 	7: {"enemyNum": 60, "text": "I'm going to get you this time!"},
 	8: {"enemyNum": 70, "text": "Are you dead yet?"},
 	9: {"enemyNum": 80, "text": "NEIN!"},
-	10: {"enemyNum": 1, "text": "You're surerly dead this time."}
+	10: {"enemyNum": 1, "text": "You're surely dead this time."}
 }
 @onready var spawn_points = $SpawnPoints.get_children()
 
