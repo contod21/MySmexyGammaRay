@@ -75,26 +75,12 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	# Call set_text without sorting
 	set_text()
 
-# Custom sort function: sorts by percentage if time is same
-func _custom_sort(a, b):
-	if a["time"] == b["time"]:
-		var a_percentage = float(a["percentage"])
-		var b_percentage = float(b["percentage"])
-		print(a_percentage, b_percentage)
-		if a_percentage == b_percentage:
-			return 0
-		elif a_percentage > b_percentage:
-			return -1
-		elif a_percentage < b_percentage:
-			return 1
-	else:
-		return a["time"] - b["time"]
-
 # Updates leaderboard display
 func set_text():
 	# Sort leaderboard using custom sort
 	leaderboard.sort_custom(func(a, b): return a["time"] > b["time"])
-	leaderboard.sort_custom(_custom_sort)
+	leaderboard.sort_custom(func(a, b): if a["time"] == b["time"]: return a["percentage"] < b["percentage"])
+	leaderboard.reverse()
 	
 	var lb = []
 	var position = 1

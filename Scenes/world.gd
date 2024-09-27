@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var current_level = 9
+@onready var current_level = 0
 @onready var label = $Camera/Label
 @onready var tiemr = $SpawnTimer
 var started = false
